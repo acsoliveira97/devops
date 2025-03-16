@@ -1,0 +1,49 @@
+# Java and Maven Build Artifacts
+*.class
+*.jar
+*.war
+*.ear
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+
+# Spring Boot Specific
+*.log
+*.log.*
+spring.log
+
+# Docker
+*.dockerignore
+Dockerfile.lock
+
+# IDE Files
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+
+# Local Environment Files
+*.env
+.env
+*.local
+
+# Dependency Directories
+/lib/
+/dependencies/
+
+# Miscellaneous
+*.swp
+*.swo
+*~
