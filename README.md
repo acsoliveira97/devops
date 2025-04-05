@@ -1,8 +1,10 @@
-# Code Stage
+# Build Stage
 
-# Overview
-The Code stage focuses on turning the project plan into working software. Now that the goals are clear, it’s time to implement the Spring Boot application with the /hello endpoint.
+**To build the application run the following command:**
 
-# Next Steps
-Proceed to the `build` branch to compile and package the application.
-```git checkout build```
+```
+mvn clean install
+```
+
+This will compile the code and generate the deployable artifact (a Jar file) in the `target` directory.
+
