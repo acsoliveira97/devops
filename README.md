@@ -1,9 +1,8 @@
-# Plan Stage
+# Code Stage
 
-## Overview
-The **Plan** stage is about defining the project goals, gathering requirements, and organizing tasks. 
-For this demo, we’re building a simple Spring Boot application with a `/hello` endpoint that returns "Hello World."
+# Overview
+The Code stage focuses on turning the project plan into working software. Now that the goals are clear, it’s time to implement the Spring Boot application with the /hello endpoint.
 
-## Next Steps
-Move to the `code` branch to start implementing the application.
-```git checkout code```
+# Next Steps
+Proceed to the `build` branch to compile and package the application.
+```git checkout build```
