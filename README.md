@@ -1,28 +1,28 @@
-# Release Stage
+# Deploy Stage
 
 ## Overview
-In this stage, we prepare and tag a Docker image to mark a versioned release of the application. This image represents a portable and deployable build that can be shared across environments.
+The Deploy stage is where we take our release artifact (the Docker image) and run it in a real or simulated environment. This step validates that the application works as expected when deployed, similar to a production setup.
 
-In real-world pipelines, release management is often automated using CI/CD tools.
-For this exercise, we'll simulate that by creating and tagging a Docker image locally.
-
-Ensure your application is built:
+Deploy the previously tagged Docker image and interact with the application through a local container:
 ```
-mvn clean install
+docker run -d -p 8080:8080 --name hello-app hello-app:1.0.0
 ```
 
-Build a Docker image using the generated .jar file:
+You can check the new container using your Docker desktop application or running the following command:
 ```
-docker build -t hello-app:1.0.0 .
+docker container list
 ```
 
-You can check your new image using the Docker Desktop application or running the following command:
+Verify the application is running by opening the browser or using curl:
+- Browser: http://localhost:8080/hello
+- Via terminal:
 ```
-docker image list
+curl http://localhost:8080/hello
 ```
+
 
 ## Next Steps
-Move to the `deploy` branch to run the released Docker image in a container.
+The deployment is complete! Move to the `operate` branch. 
 ```
-git checkout deploy
+git checkout operate
 ```
