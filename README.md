@@ -1,4 +1,4 @@
-# Deploy Stage
+# Release Stage
 
 ## Overview
 The Deploy stage is where we take our release artifact (the Docker image) and run it in a real or simulated environment. This step validates that the application works as expected when deployed, similar to a production setup.
@@ -22,7 +22,7 @@ curl http://localhost:8080/hello
 
 
 ## Next Steps
-The deployment is complete! Move to the `operate` branch. 
+Move to the `deploy` branch to run the released Docker image in a container.
 ```
-git checkout operate
+git checkout deploy
 ```
