@@ -11,6 +11,6 @@ public class HelloWorldController {
 
     @GetMapping
     public String sayHello() {
-        return "Hello, World!";
+        throw new RuntimeException("Oops! Something went wrong.");
     }
 }

@@ -1,28 +1,56 @@
-# Release Stage
+# Operate Stage
 
 ## Overview
-The Deploy stage is where we take our release artifact (the Docker image) and run it in a real or simulated environment. This step validates that the application works as expected when deployed, similar to a production setup.
+The Operate stage ensures that the application continues to run smoothly in a deployed environment. 
+This includes monitoring the health of the application, reading logs, detecting failures, 
+and recovering from issues. In this exercise, we will simulate a common production failure 
+and walk through how to detect and fix it using Docker health checks and logs.
 
-Deploy the previously tagged Docker image and interact with the application through a local container:
+Recompile your application:
 ```
-docker run -d -p 8080:8080 --name hello-app hello-app:1.0.0
-```
-
-You can check the new container using your Docker desktop application or running the following command:
-```
-docker container list
+mvn clean install -DskipTests
 ```
 
-Verify the application is running by opening the browser or using curl:
+Now lets rebuild the application for a new version:
+```
+docker build -t hello-app:1.0.1 .
+```
+
+Stop and remove the previous container and run a new container:
+```
+docker stop hello-app && docker rm hello-app
+docker run -d -p 8080:8080 --name broken-app hello-app:1.0.1
+```
+
+Check the container health status:
+```
+docker inspect --format='{{json .State.Health}}' broken-app
+```
+
+Is there something wrong? You can check your application logs with this command:
+```
+docker logs broken-app
+```
+
+Try and fix the application!
+
+After fixing the application you can redeploy it:
+```
+mvn clean install
+docker build -t hello-app:1.0.2 .
+docker stop broken-app && docker rm broken-app
+docker run -d -p 8080:8080 --name healthy-app hello-app:1.0.2
+```
+
+Now you can rerun the health status of the application:
+```
+docker inspect --format='{{json .State.Health}}' healthy-app
+```
+
+And you can also access our working endpoint:
 - Browser: http://localhost:8080/hello
 - Via terminal:
 ```
 curl http://localhost:8080/hello
 ```
 
-
-## Next Steps
-Move to the `deploy` branch to run the released Docker image in a container.
-```
-git checkout deploy
-```
