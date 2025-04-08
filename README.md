@@ -1,19 +1,28 @@
-# Test Stage
+# Release Stage
 
 ## Overview
-The Test stage ensures that the application works as expected. Automated tests help catch bugs early and give confidence in the code before deploying.
+In this stage, we prepare and tag a Docker image to mark a versioned release of the application. This image represents a portable and deployable build that can be shared across environments.
 
-**To run the application tests run the following command:**
+In real-world pipelines, release management is often automated using CI/CD tools.
+For this exercise, we'll simulate that by creating and tagging a Docker image locally.
 
+Ensure your application is built:
 ```
-mvn test
+mvn clean install
 ```
 
-Review the output and ensure all tests pass.
+Build a Docker image using the generated .jar file:
+```
+docker build -t hello-app:1.0.0 .
+```
+
+You can check your new image using the Docker Desktop application or running the following command:
+```
+docker image list
+```
 
 ## Next Steps
-
-Once tests are passing, move to the `release` branch to run the application and make it accessible.
+Move to the `deploy` branch to run the released Docker image in a container.
 ```
-git chekout release
+git checkout deploy
 ```
